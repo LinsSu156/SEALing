@@ -30,7 +30,7 @@ from .providers import (
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-LLM_CACHE_DIR = PROJECT_ROOT / "cache" / "llm_embeddings"
+LLM_CACHE_DIR = PROJECT_ROOT / "cache" / "semantic_evidence"
 
 
 def get_llm_cache_paths(
@@ -43,15 +43,10 @@ def get_llm_cache_paths(
     spots_per_cluster: int = None,
 ) -> Dict[str, Path]:
     profile = get_dataset_profile(dataset, sample=sample)
-    spots_per_cluster = resolve_spots_per_cluster(
-        dataset,
-        sample=sample,
-        spots_per_cluster=spots_per_cluster,
-    )
-    cache_version = f"{version}_{profile.cache_tag}" if profile.cache_tag else version
+    cache_tag = f"{profile.cache_tag}_" if profile.cache_tag else ""
     prefix = (
-        f"{dataset}_{sample}_{model_name}_{spots_per_cluster}\u00d7_"
-        f"{cache_version}_proto{int(n_prototypes)}_k{int(top_k_genes)}"
+        f"{dataset}_{sample}_{model_name}_{cache_tag}"
+        f"proto{int(n_prototypes)}_k{int(top_k_genes)}"
     )
     return {
         "spot_evidence": LLM_CACHE_DIR / f"{prefix}_evidence.npy",

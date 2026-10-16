@@ -5,11 +5,11 @@ import re
 
 import numpy as np
 
-from .profiles import MAINLINE_VERSION, get_dataset_profile
+from .profiles import get_dataset_profile
 
 
 DEFAULT_EVIDENCE_ROOT = (
-    Path(__file__).resolve().parent.parent / "cache" / "llm_embeddings"
+    Path(__file__).resolve().parent.parent / "cache" / "semantic_evidence"
 )
 EVIDENCE_KEY = "llm_semantic_evidence"
 
@@ -36,14 +36,10 @@ def load_semantic_evidence(
         source = f"adata.obsm['{EVIDENCE_KEY}']"
     else:
         profile = get_dataset_profile(dataset, sample=sample)
-        version = MAINLINE_VERSION
-        if profile.cache_tag:
-            version += f"_{profile.cache_tag}"
+        cache_tag = f"{profile.cache_tag}_" if profile.cache_tag else ""
         pattern = re.compile(
-            re.escape(f"{dataset}_{sample}_{model_name}_")
-            + r"(?:\d+\u00d7_)?"
-            + re.escape(version)
-            + r"_proto\d+_k10_evidence\.npy"
+            re.escape(f"{dataset}_{sample}_{model_name}_{cache_tag}")
+            + r"proto\d+_k10_evidence\.npy"
         )
         root = Path(evidence_root)
         candidates = sorted(

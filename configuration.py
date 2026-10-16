@@ -62,7 +62,7 @@ def _add_mainline_args(parser):
         help="Local NPY evidence; accepts {dataset} and {sample} placeholders.",
     )
     parser.add_argument(
-        "--evidence-root", dest="evidence_root", default="cache/llm_embeddings"
+        "--evidence-root", dest="evidence_root", default="cache/semantic_evidence"
     )
     parser.add_argument("--llm_model_name", type=str, default="gpt-5.5")
     parser.add_argument("--sem_weak_edge_prune_rate", type=float, default=0.035)

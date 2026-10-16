@@ -168,7 +168,7 @@ def train_single_sample(
         dataset,
         sample,
         evidence_path=getattr(args, "evidence_path", None),
-        evidence_root=getattr(args, "evidence_root", "cache/llm_embeddings"),
+        evidence_root=getattr(args, "evidence_root", "cache/semantic_evidence"),
         model_name=getattr(args, "llm_model_name", "gpt-5.5"),
     )
     model.update_semantic_graph(torch.as_tensor(evidence, device=device))

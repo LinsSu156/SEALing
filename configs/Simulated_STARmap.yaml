@@ -1,0 +1,3 @@
+dataset: Simulated_STARmap
+sample: ['STARmap_20180505_BY3_1k']
+seeds: [5, 15, 25, 35, 45]

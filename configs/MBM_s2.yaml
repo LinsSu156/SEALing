@@ -1,0 +1,15 @@
+dataset: MBM_s2
+sample: ['MBM_s2']
+n_clusters: 26
+seeds: [46]
+self_loop: True
+max_epoch: 450
+eval_interval: 20
+refinement_radius: 30
+cluster_fused_weight: 1.0
+cluster_struct_weight: 1.0
+cluster_sem_weight: 0.75
+cluster_fused_pca_dim: 24
+cluster_struct_pca_dim: 6
+cluster_sem_pca_dim: 6
+llm_model_name: gpt-5.5

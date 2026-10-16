@@ -1,0 +1,15 @@
+dataset: MBM_s1
+sample: ['MBM_s1']
+n_clusters: 26
+seeds: [46]
+self_loop: True
+max_epoch: 450
+eval_interval: 20
+refinement_radius: 50
+cluster_fused_weight: 1.0
+cluster_struct_weight: 1.0
+cluster_sem_weight: 0.5
+cluster_fused_pca_dim: 27
+cluster_struct_pca_dim: 6
+cluster_sem_pca_dim: 3
+llm_model_name: gpt-5.5
